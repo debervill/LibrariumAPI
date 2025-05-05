@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryApi.Models
 {
-    public class LibraryContext : DbContext
+    public class LibraryContext(DbContextOptions<LibraryContext> options) : DbContext(options)
     {
 
         public DbSet<Books> Books => Set<Books>();
@@ -12,12 +12,8 @@ namespace LibraryApi.Models
         public DbSet<IssueCards> IssueCards => Set<IssueCards>();
         public DbSet<BookPlace> BookPlaces => Set<BookPlace>();
 
-        public LibraryContext(DbContextOptions<LibraryContext> options) : base(options) { }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
-
             base.OnModelCreating(modelBuilder);
         }
     }
